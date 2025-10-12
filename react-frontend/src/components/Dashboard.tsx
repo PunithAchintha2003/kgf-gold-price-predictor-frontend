@@ -361,7 +361,7 @@ const Dashboard: React.FC<DashboardProps> = ({ currencyUnit }) => {
                       lineHeight: 1.3,
                     }}
                   >
-                    Machine Learning (ML)
+                    Lasso Regression
                   </Typography>
                 </Box>
               </>
