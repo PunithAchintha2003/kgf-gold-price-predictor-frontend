@@ -24,6 +24,7 @@ export interface Prediction {
 
 export interface AccuracyStats {
   average_accuracy: number;
+  r2_score: number;
   total_predictions: number;
   evaluated_predictions: number;
 }

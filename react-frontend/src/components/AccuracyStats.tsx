@@ -55,7 +55,7 @@ const AccuracyStats: React.FC<AccuracyStatsProps> = ({
                 marginBottom: '0.5rem',
               }}
             >
-              Model Accuracy
+              R² Score
             </Typography>
             <Typography 
               variant="h4" 
@@ -65,9 +65,21 @@ const AccuracyStats: React.FC<AccuracyStatsProps> = ({
                 fontSize: '1.75rem',
                 fontWeight: 'bold',
                 lineHeight: 1.2,
+                marginBottom: '0.25rem',
               }}
             >
-              {accuracyStats.average_accuracy.toFixed(1)}%
+              {accuracyStats.r2_score ? accuracyStats.r2_score.toFixed(3) : 'N/A'}
+            </Typography>
+            <Typography 
+              variant="body2" 
+              className={`${isDark ? 'text-gray-400' : 'text-gray-500'} text-xs font-medium`}
+              sx={{ 
+                color: isDark ? '#888888' : '#999999',
+                fontSize: '0.75rem',
+                fontWeight: 500,
+              }}
+            >
+              {accuracyStats.r2_score ? (accuracyStats.r2_score >= 0.7 ? 'Good' : 'Bad') : 'N/A'}
             </Typography>
           </Box>
 
