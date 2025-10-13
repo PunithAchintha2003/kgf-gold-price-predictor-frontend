@@ -122,26 +122,6 @@ const Chart: React.FC<ChartProps> = ({
     if (prediction && prediction.predicted_price) {
       predDate = prediction.next_day;
       predPrice = convertPrice(prediction.predicted_price, currencyUnit, usdToLkrRate).price;
-
-      // Future predictions (predictions without actual prices)
-      const isAlreadyInHistorical = historicalPredictions?.some(p => p.date === predDate);
-
-      if (!isAlreadyInHistorical) {
-        traces.push({
-          x: [predDate],
-          y: [predPrice],
-          type: 'scatter',
-          mode: 'markers',
-          name: 'Future Prediction',
-          marker: {
-            color: '#ff6b35',
-            size: 8,
-            symbol: 'diamond',
-          },
-          opacity: 0.8,
-          hovertemplate: `Future Prediction: %{x}<br>Price: ${formatLKRValue(predPrice)}<extra></extra>`,
-        });
-      }
     }
 
     // Current price marker
