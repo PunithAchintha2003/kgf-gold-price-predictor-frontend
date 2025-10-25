@@ -2,6 +2,7 @@ import React from 'react';
 import { FormControl, Select, MenuItem, Box, Typography } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useTheme } from '../hooks/useTheme';
+import { GiGoldBar } from "react-icons/gi";
 
 export type CurrencyUnit = 'troy-ounce' | 'pawn';
 
@@ -19,6 +20,24 @@ const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({ value, onChange }) 
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, marginRight: 1.5 }}>
+        <GiGoldBar 
+          style={{ 
+            color: '#F5D300', 
+            fontSize: '1.75rem' 
+          }} 
+        />
+        <Typography 
+          variant="body2" 
+          sx={{ 
+            color: '#F5D300',
+            fontSize: '0.95rem',
+            fontWeight: 600,
+          }}
+        >
+          24K
+        </Typography>
+      </Box>
       <Typography 
         variant="body2" 
         sx={{ 
