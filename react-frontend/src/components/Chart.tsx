@@ -1,12 +1,12 @@
-import React, { useMemo, useCallback, Suspense, lazy } from 'react';
+import React, { useMemo, useCallback } from 'react';
 // Assuming these types are correctly defined elsewhere:
 import type { DailyDataPoint, HistoricalPrediction, Prediction } from '../store/api/goldApi';
 import type { CurrencyUnit } from './CurrencyDropdown';
 // Assuming this utility is correctly defined elsewhere:
 import { convertPrice } from '../utils/currencyConverter';
 
-// Lazy load Plotly to reduce initial bundle size
-const Plot = lazy(() => import('react-plotly.js'));
+// Import Plotly directly to avoid React module resolution issues
+import Plot from 'react-plotly.js';
 
 // Placeholder for Plotly.js type (if not available globally)
 declare type PlotlyData = Plotly.Data;
@@ -366,26 +366,14 @@ const Chart: React.FC<ChartProps> = ({
 
   return (
     <div className="w-full">
-      <Suspense fallback={
-        <div 
-          className={`flex items-center justify-center h-${height} ${isDark ? 'bg-gray-900' : 'bg-gray-100'} rounded-lg`}
-          style={{ height: `${height}px` }}
-        >
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500 mx-auto mb-2"></div>
-            <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Loading chart...</p>
-          </div>
-        </div>
-      }>
-        <Plot
-          // Key ensures Plotly re-renders when crucial props change
+      <Plot
+        // Key ensures Plotly re-renders when crucial props change
         key={`plot-${currencyUnit}-${data.length}-${isDark}`} 
         data={plotData}
         layout={layout}
         config={config}
         style={{ width: '100%', height: `${height}px` }}
       />
-      </Suspense>
     </div>
   );
 };

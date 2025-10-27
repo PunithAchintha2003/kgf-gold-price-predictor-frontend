@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => ({
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 5000, // Plotly is large, suppress warning
     sourcemap: false,
     reportCompressedSize: true
   },
