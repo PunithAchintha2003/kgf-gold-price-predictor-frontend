@@ -20,7 +20,7 @@ const Dashboard: React.FC<DashboardProps> = ({ currencyUnit }) => {
   const [realtimePrice, setRealtimePrice] = useState<number | null>(null);
 
   // WebSocket connection for real-time updates (temporarily disabled for debugging)
-  // const { data: wsData, isConnected: wsConnected, error: wsError } = useWebSocket('ws://localhost:8001/ws/xauusd');
+  // const { data: wsData, isConnected: wsConnected, error: wsError } = useWebSocket('wss://kgf-gold-price-predictor-ml-backend.onrender.com/ws/xauusd');
   const wsData = null;
   const wsConnected = false;
   const wsError = null;

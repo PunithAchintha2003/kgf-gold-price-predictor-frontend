@@ -84,7 +84,7 @@ export interface ExchangeRateResponse {
 export const goldApi = createApi({
   reducerPath: 'goldApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8001',
+    baseUrl: 'https://kgf-gold-price-predictor-ml-backend.onrender.com',
   }),
   tagTypes: ['DailyData', 'RealtimePrice', 'PredictionExplanation', 'ExchangeRate'],
   endpoints: (builder) => ({
