@@ -6,8 +6,10 @@ import { useTheme } from '../hooks/useTheme';
 import type { CurrencyUnit } from './CurrencyDropdown';
 import { convertPrice, convertChartData } from '../utils/currencyConverter';
 
-// Lazy load heavy components
-const Chart = lazy(() => import('./Chart'));
+// Import Chart directly to avoid React module resolution issues with Plotly
+import Chart from './Chart';
+
+// Lazy load other heavy components
 const AccuracyStats = lazy(() => import('./AccuracyStats'));
 const PredictionExplanation = lazy(() => import('./PredictionExplanation'));
 
@@ -156,23 +158,17 @@ const Dashboard: React.FC<DashboardProps> = ({ currencyUnit }) => {
 
       {/* Chart */}
       <Box className="mb-6">
-        <Suspense fallback={
-          <Box display="flex" justifyContent="center" alignItems="center" minHeight="400px">
-            <CircularProgress />
-          </Box>
-        }>
-          <Chart
-            key={`chart-${realtimePrice || displayData?.current_price || 0}-${currencyUnit}`}
-            data={chartData}
-            prediction={displayData.prediction}
-            historicalPredictions={displayData.historical_predictions}
-            isDark={isDark}
-            height={600}
-            realtimePrice={realtimePrice || undefined}
-            currencyUnit={currencyUnit}
-            usdToLkrRate={usdToLkrRate}
-          />
-        </Suspense>
+        <Chart
+          key={`chart-${realtimePrice || displayData?.current_price || 0}-${currencyUnit}`}
+          data={chartData}
+          prediction={displayData.prediction}
+          historicalPredictions={displayData.historical_predictions}
+          isDark={isDark}
+          height={600}
+          realtimePrice={realtimePrice || undefined}
+          currencyUnit={currencyUnit}
+          usdToLkrRate={usdToLkrRate}
+        />
       </Box>
 
       {/* Price Information Cards */}
