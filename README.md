@@ -479,6 +479,48 @@ If you encounter issues not covered here:
 - **Market Hours**: Data availability depends on market trading hours
 - **Educational Use**: This application is for demonstration and educational purposes
 
+## 🌐 Deployment
+
+### Deploy to Render (Recommended)
+
+This project is ready to deploy to Render with one click!
+
+**Quick Deploy Steps:**
+
+1. **Push to Git** (GitHub/GitLab/Bitbucket)
+2. **Login to Render**: https://dashboard.render.com
+3. **New Blueprint**: Click "New +" → "Blueprint"
+4. **Select Repository**: Connect and select your repo
+5. **Deploy**: Click "Apply" and wait ~5 minutes
+
+**Configuration Files Included:**
+
+- ✅ `render.yaml` - Automated deployment configuration
+- ✅ `.node-version` - Node.js 18.18.0 specification
+- ✅ `DEPLOYMENT.md` - Comprehensive deployment guide
+- ✅ `RENDER_DEPLOY_CHECKLIST.md` - Quick-start checklist
+- ✅ `DEPLOYMENT_SUMMARY.md` - Setup summary
+
+**Deployment Features:**
+
+- 🆓 **FREE hosting** for static sites
+- 🌍 **Global CDN** with auto SSL
+- 🔄 **Auto-deploy** on git push
+- ⚡ **Optimized build** with code splitting
+- 📱 **Mobile responsive** design
+- 🔒 **Security headers** included
+
+**Your Deployed URLs:**
+
+- Frontend: `https://your-app-name.onrender.com`
+- Backend: `https://kgf-gold-price-predictor-ml-backend.onrender.com` (already deployed)
+
+📚 **For detailed instructions**, see:
+
+- Quick guide: `RENDER_DEPLOY_CHECKLIST.md`
+- Full guide: `DEPLOYMENT.md`
+- Summary: `DEPLOYMENT_SUMMARY.md`
+
 ## 📈 Recent Updates & Project Status
 
 ### ✅ Latest Updates (Current Version)
@@ -491,6 +533,7 @@ If you encounter issues not covered here:
 - **Real-time LKR Price**: Live LKR price updates every 2 seconds with gold bar icon
 - **Responsive Design**: Mobile-first design that works on all screen sizes
 - **Production Ready**: Full build system with TypeScript compilation and optimization
+- **Render Deployment**: Ready-to-deploy with automated configuration
 
 ### 🔄 Project Status
 
