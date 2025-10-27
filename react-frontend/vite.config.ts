@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode }: { mode: string }) => ({
   plugins: [
     react(),
     mode === 'analyze' && visualizer({
@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   build: {
     target: 'esnext',
-    minify: 'terser',
+    minify: 'terser' as const,
     terserOptions: {
       compress: {
         drop_console: true,
@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => ({
     },
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
+        manualChunks: (id: string) => {
           // Create separate chunks for better caching
           if (id.includes('node_modules')) {
             if (id.includes('plotly.js') || id.includes('react-plotly')) {
@@ -80,6 +80,6 @@ export default defineConfig(({ mode }) => ({
     ]
   },
   esbuild: {
-    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+    logOverride: { 'this-is-undefined-in-esm': 'silent' as const }
   }
 }))
