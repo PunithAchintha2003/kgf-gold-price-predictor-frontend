@@ -11,6 +11,7 @@ A comprehensive gold price prediction application featuring a modern React front
 - **Real-time Updates**: Live gold price updates every 2 seconds
 - **AI Predictions**: Machine learning-powered next-day price predictions
 - **Multi-currency Support**: USD and LKR (Sri Lankan Rupee) with live exchange rates
+- **Gold Bar Display**: 24K gold indicator with real-time LKR price display
 - **Responsive Design**: Mobile-first approach that works on all devices
 - **Theme Support**: Light/Dark mode toggle with persistent preferences
 
@@ -23,6 +24,7 @@ A comprehensive gold price prediction application featuring a modern React front
 - **Real-time Price Display**: Live gold price updates every 2 seconds
 - **AI Predictions**: Next-day price predictions with accuracy statistics
 - **Multi-currency Support**: USD and LKR (Sri Lankan Rupee) with live exchange rates
+- **Gold Bar Display**: 24K gold indicator with real-time LKR price in bordered containers
 - **Professional UI**: Dark/Light theme support with TradingView-inspired design
 - **Responsive Design**: Mobile-friendly interface that works on all devices
 - **State Management**: Redux Toolkit with RTK Query for efficient API calls and state persistence
@@ -69,6 +71,7 @@ The backend requires Python packages (install with `pip install -r requirements.
   "react-plotly.js": "^2.6.0", // Interactive charts
   "redux-persist": "^6.0.0", // State persistence
   "react-router-dom": "^7.9.2", // Client-side routing
+  "react-icons": "^5.0.0", // Icon library for gold bar display
   "vite": "^7.1.7" // Build tool
 }
 ```
@@ -444,6 +447,7 @@ If you encounter issues not covered here:
    - Switch between USD (troy ounce) and LKR (pawn) units
    - Live exchange rate integration
    - Automatic price conversion
+   - Real-time LKR price display with gold bar icon
 
 5. **Theme customization**:
 
@@ -483,6 +487,8 @@ If you encounter issues not covered here:
 - **Interactive Charts**: Plotly.js integration with professional styling
 - **State Management**: Redux Toolkit with RTK Query for efficient API calls and caching
 - **Theme Support**: Light/Dark mode toggle with persistent user preferences
+- **Gold Bar Display**: 24K gold indicator with real-time LKR price in bordered containers
+- **Real-time LKR Price**: Live LKR price updates every 2 seconds with gold bar icon
 - **Responsive Design**: Mobile-first design that works on all screen sizes
 - **Production Ready**: Full build system with TypeScript compilation and optimization
 
