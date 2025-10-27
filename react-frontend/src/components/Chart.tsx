@@ -198,6 +198,19 @@ const Chart: React.FC<ChartProps> = ({
   }, [data, prediction, historicalPredictions, currentPrice, currencyUnit, usdToLkrRate, formatLKRValue]);
 
   const layout = useMemo(() => {
+    // Ensure data exists before proceeding
+    if (!data || data.length === 0) {
+      return {
+        title: undefined,
+        xaxis: { showgrid: true },
+        yaxis: { showgrid: true },
+        plot_bgcolor: isDark ? '#000000' : '#FFFFFF',
+        paper_bgcolor: isDark ? '#000000' : '#FFFFFF',
+        font: { color: isDark ? '#FFFFFF' : '#000000' },
+        height,
+      };
+    }
+
     // Dynamic LKR tick calculation for clean chart
     const getLKRTickVals = () => {
       const allPrices = data.map(d => d.close);
@@ -205,6 +218,8 @@ const Chart: React.FC<ChartProps> = ({
       if (prediction && prediction.predicted_price) {
         allPrices.push(convertPrice(prediction.predicted_price, currencyUnit, usdToLkrRate).price);
       }
+      
+      if (allPrices.length === 0) return [0];
       
       const minPrice = Math.min(...allPrices);
       const maxPrice = Math.max(...allPrices);
@@ -314,7 +329,7 @@ const Chart: React.FC<ChartProps> = ({
       height,
       annotations: [
         // Current price annotation aligned with prediction
-        {
+        ...(data && data.length > 0 ? [{
           x: prediction && prediction.predicted_price ? prediction.next_day : data[data.length - 1].date,
           y: currentPrice,
           text: formatLKRValue(currentPrice),
@@ -327,10 +342,10 @@ const Chart: React.FC<ChartProps> = ({
           xanchor: 'left' as const,
           yanchor: 'middle' as const,
           xshift: 10
-        },
+        }] : []),
         // Prediction price annotation
-        ...(predPriceConverted !== undefined ? [{
-          x: prediction!.next_day,
+        ...(predPriceConverted !== undefined && prediction ? [{
+          x: prediction.next_day,
           y: predPriceConverted, // Use the converted price
           text: formatLKRValue(predPriceConverted),
           showarrow: false,
@@ -364,15 +379,30 @@ const Chart: React.FC<ChartProps> = ({
     );
   }
 
+  // Additional safety check before rendering Plot
+  if (!plotData || plotData.length === 0) {
+    return (
+      <div 
+        className={`flex items-center justify-center ${isDark ? 'bg-gray-900' : 'bg-gray-100'} rounded-lg`}
+        style={{ height: `${height}px` }}
+      >
+        <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Loading chart...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full">
       <Plot
-        // Key ensures Plotly re-renders when crucial props change
-        key={`plot-${currencyUnit}-${data.length}-${isDark}`} 
-        data={plotData}
-        layout={layout}
+        key={`plot-${currencyUnit}-${data?.length || 0}-${isDark}`}
+        data={plotData || []}
+        layout={layout || {}}
         config={config}
         style={{ width: '100%', height: `${height}px` }}
+        useResizeHandler={true}
+        onError={(error) => {
+          console.error('Plotly error:', error);
+        }}
       />
     </div>
   );
