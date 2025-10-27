@@ -31,6 +31,10 @@ export default defineConfig(({ mode }: { mode: string }) => ({
         manualChunks: (id: string) => {
           // Create separate chunks for better caching
           if (id.includes('node_modules')) {
+            // Keep React and React-DOM together to ensure React.Children is available
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react';
+            }
             if (id.includes('plotly.js') || id.includes('react-plotly')) {
               return 'plotly';
             }
@@ -42,9 +46,6 @@ export default defineConfig(({ mode }: { mode: string }) => ({
             }
             if (id.includes('react-router')) {
               return 'router';
-            }
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react';
             }
             return 'vendor';
           }
@@ -77,7 +78,12 @@ export default defineConfig(({ mode }: { mode: string }) => ({
       'react-redux',
       'redux-persist',
       'react-router-dom'
-    ]
+    ],
+    esbuildOptions: {
+      define: {
+        global: 'globalThis',
+      },
+    },
   },
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' as const }
