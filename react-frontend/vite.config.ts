@@ -55,7 +55,7 @@ export default defineConfig(({ mode }: { mode: string }) => ({
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    chunkSizeWarningLimit: 5000, // Plotly is large, suppress warning
+    chunkSizeWarningLimit: 8000, // Plotly.js is inherently large (~6-7MB), this is expected
     sourcemap: false,
     reportCompressedSize: true
   },
