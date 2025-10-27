@@ -130,10 +130,11 @@ Before deploying, ensure:
 ### Deployment Configuration
 
 ```yaml
-Service Type: Static Site (Web Service)
+Service Type: Web Service
 Runtime: Node.js 18.18.0
-Build Command: cd react-frontend && npm install && npm run build
-Publish Directory: react-frontend/dist
+Build Command: cd react-frontend && npm install && npm run build && cd .. && npm install
+Start Command: node server.js
+Port: 10000
 Auto Deploy: Enabled
 Region: Oregon (US West)
 Plan: Free Tier

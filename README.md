@@ -491,7 +491,7 @@ This project is ready to deploy to Render with one click!
 2. **Login to Render**: https://dashboard.render.com
 3. **New Blueprint**: Click "New +" → "Blueprint"
 4. **Select Repository**: Connect and select your repo
-5. **Deploy**: Click "Apply" and wait ~5 minutes
+5. **Deploy**: Click "Apply" and wait ~5-7 minutes
 
 **Configuration Files Included:**
 

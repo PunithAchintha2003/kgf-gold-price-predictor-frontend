@@ -58,10 +58,11 @@ Render will auto-detect `render.yaml` and show:
 
 ```yaml
 ✅ Name: kgf-gold-price-predictor-frontend
-✅ Type: Static Site
-✅ Build: cd react-frontend && npm install && npm run build
-✅ Publish: react-frontend/dist
+✅ Type: Web Service
+✅ Build: cd react-frontend && npm install && npm run build && cd .. && npm install
+✅ Start: node server.js
 ✅ Node: 18.18.0
+✅ Port: 10000
 ```
 
 ## Step 6: Deploy!
@@ -113,11 +114,12 @@ Every time you push to your main branch, Render will automatically rebuild and d
 
 ## 📝 Notes
 
-- **First deploy**: Takes ~5 minutes
+- **First deploy**: Takes ~5-7 minutes (building + starting server)
 - **Future deploys**: Takes ~3-5 minutes
-- **Cost**: FREE (static sites are free on Render!)
+- **Service Type**: Web Service (Node.js + Express server)
+- **Cost**: FREE for 750 hours/month (enough for 24/7 operation)
 - **SSL**: Automatic HTTPS certificate
-- **CDN**: Global content delivery network
+- **Server**: Express.js serving optimized React build
 
 ---
 

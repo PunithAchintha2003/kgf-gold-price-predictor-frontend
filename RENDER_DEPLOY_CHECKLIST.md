@@ -23,23 +23,24 @@ Quick checklist for deploying to Render.
 6. **Wait**: Build takes ~5 minutes
 7. **Done**: Get your URL and test!
 
-### Method 2: Manual Static Site
+### Method 2: Manual Web Service
 
 1. **Login to Render**: https://dashboard.render.com
-2. **New Static Site**: Click "New +" → "Static Site"
+2. **New Web Service**: Click "New +" → "Web Service"
 3. **Connect Repo**: Select your repository
 4. **Configure**:
    - **Name**: `kgf-gold-price-predictor-frontend`
    - **Branch**: `main`
-   - **Build Command**: `cd react-frontend && npm install && npm run build`
-   - **Publish Directory**: `react-frontend/dist`
+   - **Runtime**: `Node`
+   - **Build Command**: `cd react-frontend && npm install && npm run build && cd .. && npm install`
+   - **Start Command**: `node server.js`
 5. **Advanced Settings**:
    - Node Version: `18.18.0`
-6. **Redirects/Rewrites**:
-   - Source: `/*`
-   - Destination: `/index.html`
-   - Action: `Rewrite`
-7. **Create**: Click "Create Static Site"
+   - Port: `10000` (auto-detected)
+6. **Environment Variables** (optional, already in render.yaml):
+   - `NODE_ENV`: `production`
+   - `PORT`: `10000`
+7. **Create**: Click "Create Web Service"
 8. **Done**: Wait for build and get your URL!
 
 ## 🔍 Post-Deployment Verification
