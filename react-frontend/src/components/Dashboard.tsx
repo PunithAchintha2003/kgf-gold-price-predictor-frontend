@@ -141,7 +141,7 @@ const Dashboard: React.FC<DashboardProps> = ({ currencyUnit }) => {
           color: isDark ? '#FFFFFF' : '#000000',
         }}
       >
-        📈 Gold Price Prediction
+        Gold Price Prediction
       </Typography>
 
       {/* Connection Status */}
